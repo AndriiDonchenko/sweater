@@ -34,7 +34,7 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("/main")
+    @PostMapping("main")
     public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
         Message message = new Message(text,tag);
         messageRepo.save(message);
@@ -44,6 +44,7 @@ public class MainController {
 
         return "main";
     }
+
 
     @PostMapping("filter")
     public String filter(@RequestParam String filter, Map<String, Object> model) {
