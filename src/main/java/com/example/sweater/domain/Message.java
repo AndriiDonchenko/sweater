@@ -1,15 +1,22 @@
 package com.example.sweater.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.LinkedList;
 
 @Entity
 public class Message {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
+    @NotBlank(message = "Please, fill the message")
+    @Length(max = 2048, message = "Message too long")
     public String text;
+
+    @Length(max = 255, message = "Message too long")
     public String tag;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -47,11 +54,11 @@ public class Message {
         this.tag = tag;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
